@@ -1,0 +1,13 @@
+
+# Local browser / automation state
+.chrome-sampling-profile/
+*.cookies
+*.session
+*.har
+
+# Local temp diagnostics
+search-results-*.md
+
+# OS / editor
+.DS_Store
+.vscode/settings.json
