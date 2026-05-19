@@ -131,6 +131,7 @@ Read the runbook first; consult the rest as needed. They hold the detail — do 
 - `references/platform_notes.md` — Amazon / Amazon Haul scoped search / Temu profile + CAPTCHA handling.
 - `references/review_checklist.md` — per-run review items and PASS / PASS WITH FIXES / FAIL rule.
 - `references/privacy_rules.md` — no personal/session data; no committed profiles/cookies/snapshots.
+- `references/validator_design.md` — design-only spec for a tiny local output validator (not yet implemented).
 
 ## Done Criteria
 
