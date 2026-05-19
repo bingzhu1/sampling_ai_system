@@ -50,6 +50,9 @@ Comparison fairness:
 
 ## Home goods
 
+> Provisional — not yet validated against a real keyword run. Use as a starting
+> point; refine after the first home-goods keyword. Do not overbuild ahead of data.
+
 Priority order for `spec`:
 1. **quantity** — pack/set count if stated.
 2. **dimensions** — size/volume/capacity if visible (the primary comparability axis for home goods).

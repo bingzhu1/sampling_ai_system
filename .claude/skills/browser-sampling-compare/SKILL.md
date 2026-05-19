@@ -20,7 +20,16 @@ Use this skill when the user asks to:
 - find comparable items on Temu / Amazon / Amazon Haul
 - extract prices, specs, links, and notes from browser-visible pages
 
-## Workflow
+## Modes
+
+Pick the mode from the request, then follow the matching reference. One keyword per run unless told otherwise.
+
+- **Collection mode** — collect a fresh sample for a keyword. Triggers: "compare X across…", "sample/collect X", "run keyword …". Follow `references/runbook.md`. Requires browser pre-flight.
+- **Review mode** — audit an existing run, no new collection. Triggers: "review/audit the run", "checkpoint", "is this ready?". Follow `references/review_checklist.md`; no browser needed.
+- **Documentation-only mode** — edit skill/reference/docs, no collection, no outputs. Triggers: "improve the skill", "create reference docs", "quality pass". Do not open a browser or touch `outputs/`.
+- **Manual-assisted mode** — a platform hits login/CAPTCHA; the user completes it manually in the Playwright-opened browser, then collection resumes on the same persistent profile. Triggers: "I logged in, continue", "handle it manually". Never bypass the protection; see `references/platform_notes.md`.
+
+## Workflow (collection mode)
 
 0. **Browser Tool Pre-flight (REQUIRED, run before any data collection):**
 
@@ -56,25 +65,7 @@ Use this skill when the user asks to:
 
 ## Persistent Browser Profile Rule
 
-For platforms that require login, CAPTCHA handling, cart/session state, or region/currency persistence, use Playwright MCP with a fixed user data directory.
-
-Current project profile:
-
-/Users/bingzhu/.chrome-sampling-profile
-
-Expected behavior:
-- The Playwright-opened browser should preserve cookies, localStorage, cart state, login state, region, and currency between sessions.
-- The user may manually complete login or CAPTCHA in the Playwright-opened browser.
-- After manual login/CAPTCHA, continue using the same Playwright MCP profile.
-- Do not switch back to WebFetch.
-- Do not use a different Chrome profile unless explicitly approved.
-
-Important:
-Do not try to attach to the user's normal daily Chrome profile.
-Do not use the default Chrome User Data directory.
-Use a separate automation profile.
-
-Note: This was validated when Temu search results loaded without CAPTCHA/login wall and the cart state persisted across MCP sessions.
+Use Playwright MCP with the fixed local profile `/Users/bingzhu/.chrome-sampling-profile` for login / CAPTCHA / cart / region persistence. Do not use the user's daily Chrome profile or the default Chrome user-data dir, and do not switch back to WebFetch. The profile path is local-only and its contents are never committed. Manual login/CAPTCHA handling and the Temu validation note are in `references/platform_notes.md`; the privacy boundary is in `references/privacy_rules.md`.
 
 1. Confirm task inputs:
    - platforms
@@ -108,30 +99,19 @@ Note: This was validated when Temu search results loaded without CAPTCHA/login w
 5. Assign match_group:
    - products in the same group should be meaningfully comparable
 
-6. Assign match_score:
-   - 90-100 = almost same / highly comparable
-   - 70-89 = comparable
-   - 50-69 = weak but usable with caveat
-   - <50 = not recommended
+6. Assign match_score and fill spec — bands, quantity/sponsored/cross-listing rules, and spec extraction are in `references/match_score_rules.md` and `references/product_spec_rules.md`. Do not inline the bands here.
 
-7. Output:
-   - CSV preferred
-   - Markdown table acceptable
-   - include source links
-   - include notes and uncertainty
+7. Output — write the three files per `references/output_contract.md` (CSV + notes + review). Always include source links and explain uncertainty.
 
-## Default Output Columns
+## Output Schema
 
-Use exactly this 19-column schema (this order):
-
-sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,match_group,match_score,notes,data_source,fetch_method,region,currency,is_sponsored,price_per_unit,block_reason
+The single source of truth for the 19-column CSV schema, file naming, and blocked/ambiguous row formats is `references/output_contract.md` (literal header also in `templates/output_columns.csv`). Do not restate the column list elsewhere — avoids schema drift.
 
 ## Rules
 
 - Do not bypass login, CAPTCHA, paywalls, or platform protections.
 - Do not collect private personal data.
-- Do not store credentials, cookies, tokens, or session files.
-- Do not record personal cart, account, address, delivery ZIP, order, or session details in notes or outputs. Only record research sample data. If login/cart/session state is used to verify persistence, describe it generically and redact personal details.
+- Do not store credentials, cookies, tokens, or session files; no personal cart/account/address/ZIP/order/session data in outputs (full rules: `references/privacy_rules.md`).
 - Do not claim exactness if price or spec is unclear.
 - If a page is blocked or dynamic, report it clearly.
 - Prefer small batches.
@@ -142,7 +122,7 @@ sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,
 
 ## References
 
-Read the runbook first; consult the rest as needed. They hold the detail — do not duplicate it here.
+Read the runbook first; consult the rest as needed. They hold the detail — do not duplicate it here. Each file is self-contained and linked directly from this section (one level deep); cross-links between references are optional "see also" pointers, not required reading.
 
 - `references/runbook.md` — end-to-end one-keyword run flow and stop conditions.
 - `references/output_contract.md` — file naming, 19-column schema, blocked/ambiguous row formats.

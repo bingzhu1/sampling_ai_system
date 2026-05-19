@@ -69,3 +69,8 @@ Rule: never assign a score without a one-line justification in the `notes` colum
 - "Tough … 5 Pack Including 2 Ropes & 3 Supplies" → `g_pack_unclear`, **50**, per-unit blank.
 - "10pcs/20pcs/30pcs … Rope Toy" variant selector → `g_pack_unclear`, **45**, per-unit blank.
 - TLAZZ 2-pack present on both Amazon and Amazon Haul (same ASIN) → kept once on Amazon, Haul sample used a different product.
+
+### Home goods — provisional
+Not yet validated against a real keyword run. The bands and rules above are
+category-agnostic and apply; add worked examples after the first home-goods keyword.
+Do not overbuild ahead of data.

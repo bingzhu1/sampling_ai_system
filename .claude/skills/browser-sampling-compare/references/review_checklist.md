@@ -9,8 +9,7 @@ Each item is PASS / FAIL with a one-line reason.
 - Blocked/trace rows counted separately, not toward the verified sample.
 
 ## 2. 19-column schema
-- Header exactly:
-  `sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,match_group,match_score,notes,data_source,fetch_method,region,currency,is_sponsored,price_per_unit,block_reason`
+- Header matches the canonical schema in `output_contract.md` exactly (19 columns, that order). The literal header is not restated here — avoids drift.
 - Every row has exactly 19 fields (CSV parses cleanly).
 
 ## 3. match_group quality
