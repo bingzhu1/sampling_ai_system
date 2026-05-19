@@ -122,27 +122,16 @@ Note: This was validated when Temu search results loaded without CAPTCHA/login w
 
 ## Default Output Columns
 
-sample_id
-category
-keyword
-platform
-product_name
-price
-spec
-link
-match_group
-match_score
-notes
-data_source
-fetch_method
-region
-currency
+Use exactly this 19-column schema (this order):
+
+sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,match_group,match_score,notes,data_source,fetch_method,region,currency,is_sponsored,price_per_unit,block_reason
 
 ## Rules
 
 - Do not bypass login, CAPTCHA, paywalls, or platform protections.
 - Do not collect private personal data.
 - Do not store credentials, cookies, tokens, or session files.
+- Do not record personal cart, account, address, delivery ZIP, order, or session details in notes or outputs. Only record research sample data. If login/cart/session state is used to verify persistence, describe it generically and redact personal details.
 - Do not claim exactness if price or spec is unclear.
 - If a page is blocked or dynamic, report it clearly.
 - Prefer small batches.

@@ -3,7 +3,7 @@
 **Task:** Compare "men boxer briefs 4 pack" across Amazon, Amazon Haul, Temu (up to 5 candidates each).
 **Date:** 2026-05-12
 **Browser tool:** Playwright MCP (verified at Step 0 against https://example.com)
-**Region observed:** US (page indicated "Delivering to St Louis 63108")
+**Region observed:** US (ZIP redacted)
 **Result:** 15 verified candidates (Amazon ×5, Amazon Haul ×5, Temu ×5) + 1 historical TEMU-BLOCKED row preserved.
 
 **CSV schema migration (2026-05-12 follow-up):** The 4 columns proposed at the bottom of this notes file have now been added — `canonical_link`, `is_sponsored`, `price_per_unit`, `block_reason`. Existing Amazon and Amazon Haul rows were not content-modified; the 4 new columns were back-filled from facts already stated in their `notes` field (or computed from price/pack where the pack count is confirmed in the title). `TEMU-BLOCKED-01` is retained as a historical record of the prior block.
@@ -51,7 +51,7 @@
 
 ### Temu — ACCESSIBLE (2026-05-12 second attempt, after manual login)
 
-- Resumed with a persistent Playwright MCP profile at `/Users/bingzhu/.chrome-sampling-profile`. The user manually completed Temu login in the Playwright-opened browser; the persistent profile then retained cookies/cart/login across MCP sessions (validated: cart preserved 5 items with named seller "JQ Fitting" and itemized prices).
+- Resumed with a persistent Playwright MCP profile at `/Users/bingzhu/.chrome-sampling-profile`. The user manually completed Temu login in the Playwright-opened browser. Persistent profile worked; logged-in/cart state was observed, but personal cart/account details were redacted.
 - Re-opened `https://www.temu.com/` — homepage loaded normally (title `Temu | Explore the Latest Clothing, Beauty, Home, Jewelry & More`); no CAPTCHA, no forced sign-in wall this time.
 - Navigated to `https://www.temu.com/search_result.html?search_key=men%20boxer%20briefs%204%20pack` — page title `Temu`, search grid rendered (40 unique product anchors detected on the page).
 - Captured 5 candidates (TEMU-01..TEMU-05). 4 of 5 have a 4-pack count explicitly visible in the card title (`4-Pack`, `4pcs`, or `(4 Count)`). 1 row (TEMU-03) has an ambiguous `10/4pcs` variant selector in the title and was placed in `g2_pack_unclear` with `match_score=45`, mirroring how AMZ-05 was handled.

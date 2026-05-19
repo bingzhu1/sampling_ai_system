@@ -1,5 +1,6 @@
 
 # Local browser / automation state
+.playwright-mcp/
 .chrome-sampling-profile/
 *.cookies
 *.session
