@@ -142,11 +142,15 @@ sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,
 
 ## References
 
-Consult these before scoring or writing output (they make runs repeatable):
+Read the runbook first; consult the rest as needed. They hold the detail — do not duplicate it here.
 
-- `references/match_score_rules.md` — match_group / match_score bands, quantity, ambiguous packs, brand vs generic, sponsored, Amazon↔Haul cross-listing, worked examples.
-- `references/product_spec_rules.md` — category-specific spec extraction (apparel, pet supplies, home goods); never infer material/pack/dimensions.
-- `references/platform_notes.md` — Amazon search + sponsored URL normalization, Amazon Haul scoped search (`srs=121974693011`, `search-alias=bazaar`), Temu persistent profile + manual login/CAPTCHA handling, no-WebFetch and no-personal-data rules.
+- `references/runbook.md` — end-to-end one-keyword run flow and stop conditions.
+- `references/output_contract.md` — file naming, 19-column schema, blocked/ambiguous row formats.
+- `references/match_score_rules.md` — match_group / match_score bands and worked examples.
+- `references/product_spec_rules.md` — category-specific spec extraction (never infer).
+- `references/platform_notes.md` — Amazon / Amazon Haul scoped search / Temu profile + CAPTCHA handling.
+- `references/review_checklist.md` — per-run review items and PASS / PASS WITH FIXES / FAIL rule.
+- `references/privacy_rules.md` — no personal/session data; no committed profiles/cookies/snapshots.
 
 ## Done Criteria
 
