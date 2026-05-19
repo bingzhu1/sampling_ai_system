@@ -140,6 +140,14 @@ sample_id,category,keyword,platform,product_name,price,spec,link,canonical_link,
 - Do not silently drop uncertain samples.
 - Use notes to explain uncertainty.
 
+## References
+
+Consult these before scoring or writing output (they make runs repeatable):
+
+- `references/match_score_rules.md` — match_group / match_score bands, quantity, ambiguous packs, brand vs generic, sponsored, Amazon↔Haul cross-listing, worked examples.
+- `references/product_spec_rules.md` — category-specific spec extraction (apparel, pet supplies, home goods); never infer material/pack/dimensions.
+- `references/platform_notes.md` — Amazon search + sponsored URL normalization, Amazon Haul scoped search (`srs=121974693011`, `search-alias=bazaar`), Temu persistent profile + manual login/CAPTCHA handling, no-WebFetch and no-personal-data rules.
+
 ## Done Criteria
 
 A sampling task is done when:
